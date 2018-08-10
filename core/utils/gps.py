@@ -2,12 +2,14 @@
 from HTMLParser import HTMLParser
 
 """
-Should implement
+Implements :
+DDD.DDDDD^'    : Decimal Degrees signed                 +32.30642, -122.61458
+DDD.DDDDD^'    : Decimal Degrees signed GMap            32.30642,-122.61458
+
+Should implement :
 DDD^ MM' SS.S" : Degrees, Minutes and Seconds           32^ 18' 23.1" N 122^ 36' 52.5" W
 DDD^ MM.MMM'   : Degrees and Decimal Minutes            32^ 18.385' N 122^ 36.875' W
 DDD.DDDDD^'    : Decimal Degrees                        32.30642^ N 122.61458^ W
-DDD.DDDDD^'    : Decimal Degrees signed                 +32.30642, -122.61458
-DDD.DDDDD^'    : Decimal Degrees signed GMap            32.30642,-122.61458
 """
 
 
@@ -55,7 +57,7 @@ _GPS_FORMATERS = {
 }
 
 
-class GPSUtils(object):
+class _GPSUtils(object):
     
     def format(self, lat=None, lon=None, format=None):
         """
@@ -87,4 +89,4 @@ class GPSUtils(object):
         return list([_key for _key in _GPS_FORMATERS])
 
 
-gps_utils = GPSUtils()
+gps_utils = _GPSUtils()
