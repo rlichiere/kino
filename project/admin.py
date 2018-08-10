@@ -8,64 +8,64 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('label', 'referer_', )
 
     def referer_(self, instance):
-        return instance.referer.render_for_backoffice().as_link()
+        return instance.referer.representation.as_link()
 
 
 class PhaseAdmin(admin.ModelAdmin):
     list_display = ('label', 'rank', 'project', 'project_referer', )
 
     def project_referer(self, instance):
-        return instance.project.referer.render_for_backoffice().as_link()
+        return instance.project.referer.representation.as_link()
 
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('label', 'project', 'phase_', 'required_capacities_', 'referer_', 'depends_on_', )
 
     def project(self, instance):
-        return instance.phase.project.render_for_backoffice().as_link()
+        return instance.phase.project.representation.as_link()
 
     def phase_(self, instance):
-        return instance.phase.render_for_backoffice().as_link()
+        return instance.phase.representation.as_link()
 
     def required_capacities_(self, instance):
         if not instance.required_capacities:
             # todo : this should not happen because task.capacities should never be empty
             return '-'
 
-        return instance.render_for_backoffice().as_list(instance.required_capacities.all())
+        return instance.representation.as_list(instance.required_capacities.all())
 
     def referer_(self, instance):
-        return instance.referer.render_for_backoffice().as_link()
+        return instance.referer.representation.as_link()
 
     def depends_on_(self, instance):
         _taskDeps = TaskDependency.objects.filter(concerned_task=instance)
-        return instance.referer.render_for_backoffice().as_list(_taskDeps)
+        return instance.referer.representation.as_list(_taskDeps)
 
 
 class TaskDependencyAdmin(admin.ModelAdmin):
     list_display = ('id', 'concerned_task', 'depends_on', 'phase', 'project', )
 
     def phase(self, instance):
-        return instance.concerned_task.phase.render_for_backoffice().as_link()
+        return instance.concerned_task.phase.representation.as_link()
 
     def project(self, instance):
-        return instance.concerned_task.phase.project.render_for_backoffice().as_link()
+        return instance.concerned_task.phase.project.representation.as_link()
 
 
 class ParticipationAdmin(admin.ModelAdmin):
     list_display = ('id', 'participant_', 'capacity_', 'task_', 'validation', 'project')
 
     def task_(self, instance):
-        return instance.task.render_for_backoffice().as_link()
+        return instance.task.representation.as_link()
 
     def participant_(self, instance):
-        return instance.participant.render_for_backoffice().as_link()
+        return instance.participant.representation.as_link()
 
     def capacity_(self, instance):
-        return instance.capacity.render_for_backoffice().as_link()
+        return instance.capacity.representation.as_link()
 
     def project(self, instance):
-        return instance.task.phase.project.render_for_backoffice().as_link()
+        return instance.task.phase.project.representation.as_link()
 
     def validation(self, instance):
         if instance.participant_validation and instance.referer_validation:

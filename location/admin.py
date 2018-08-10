@@ -15,7 +15,7 @@ class GPSAddressAdmin(admin.ModelAdmin):
         return instance.coordinates
 
     def location_(self, instance):
-        return Location.objects.get(gps_address=instance).render_for_backoffice().as_link()
+        return Location.objects.get(gps_address=instance).representation.as_link()
 
 
 class LocationAdmin(admin.ModelAdmin):
@@ -25,13 +25,13 @@ class LocationAdmin(admin.ModelAdmin):
         _roadbooks = RoadbookAddress.objects.filter(location=instance)
         if _roadbooks.count() == 0:
             return '-'
-        return instance.render_for_backoffice().as_list(_roadbooks)
+        return instance.representation.as_list(_roadbooks)
 
     def postal_address_(self, instance):
-        return instance.postal_address.render_for_backoffice().as_link()
+        return instance.postal_address.representation.as_link()
 
     def gps_address_(self, instance):
-        return instance.gps_address.render_for_backoffice().as_link()
+        return instance.gps_address.representation.as_link()
 
 
 class RoadbookAddressAdmin(admin.ModelAdmin):
@@ -39,7 +39,7 @@ class RoadbookAddressAdmin(admin.ModelAdmin):
 
     def steps(self, instance):
         _steps = RoadbookStep.objects.filter(roadbook=instance).order_by('rank')
-        return instance.render_for_backoffice().as_list(_steps)
+        return instance.representation.as_list(_steps)
 
 
 class RoadbookStepAdmin(admin.ModelAdmin):

@@ -9,10 +9,10 @@ class ItemAdmin(admin.ModelAdmin):
 
     def list_categories(self, instance):
         _instances = instance.categories.all()
-        return instance.render_for_backoffice().as_list(_instances)
+        return instance.representation.as_list(_instances)
 
     def owner_(self, instance):
-        return instance.owner.render_for_backoffice().as_link()
+        return instance.owner.representation.as_link()
 
 
 class ItemPictureAdmin(admin.ModelAdmin):
@@ -20,7 +20,7 @@ class ItemPictureAdmin(admin.ModelAdmin):
 
     def list_categories(self, instance):
         _instances = instance.item.categories.all()
-        return instance.render_for_backoffice().as_list(_instances)
+        return instance.representation.as_list(_instances)
 
 
 admin.site.register(ItemCategory)

@@ -8,7 +8,7 @@ class ParticipantAdmin(admin.ModelAdmin):
     list_display = ('name', 'capacities_', 'location', 'preferred_method_of_contact')
 
     def capacities_(self, instance):
-        return instance.render_for_backoffice().as_list(instance.capacities.all())
+        return instance.representation.as_list(instance.capacities.all())
 
 
 admin.site.register(Capacity)

@@ -1,10 +1,8 @@
 
-from abc import abstractmethod
-
 from django.utils.html import format_html
 
 
-class ModelFormatter(object):
+class ModelRepresentation(object):
 
     def __init__(self, instance):
         self._instance = instance
@@ -37,10 +35,12 @@ class ModelFormatter(object):
             id=instance.id,
         )
         return '<a href="%s" target="_blank">%s</a>' % (_url, instance.__str__())
-        # return '<a href="%s" target="_blank">%s</a>' % (_url, instance.__repr_in_list__)
 
 
 class GenericModelInterface(object):
+
+    def __init__(self):
+        self._representation = None
     """
         Generic class must be implemented by all Models classes to take profit of integrated tools:
     """
@@ -48,5 +48,13 @@ class GenericModelInterface(object):
     # RLI : dirty anticipation of cousin Model.id property
     id = int()
 
-    def render_for_backoffice(self):
-        return ModelFormatter(self)
+    @property
+    def representation(self):
+        return self._get_or_init_representation()
+
+    """ PRIVATE """
+
+    def _get_or_init_representation(self):
+        if self._representation is None:
+            self._representation = ModelRepresentation(self)
+        return self._representation
