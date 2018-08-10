@@ -7,8 +7,10 @@ from constants import PARTICIPANT_PREFERRED_METHODS_OF_CONTACT
 
 
 class Capacity(models.Model):
-    name = models.CharField(max_length=200, unique=True)
     label = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.label
 
 
 class Participant(models.Model):
@@ -21,11 +23,11 @@ class Participant(models.Model):
     phone_mobile = models.CharField(max_length=200, blank=True)
     phone_static = models.CharField(max_length=200, blank=True)
     facebook = models.CharField(max_length=200, blank=True)
-    preferred_method_of_contact = models.CharField(max_length=200,
-                                                   choices=PARTICIPANT_PREFERRED_METHODS_OF_CONTACT.as_choices())
+    preferred_method_of_contact = models.CharField(choices=PARTICIPANT_PREFERRED_METHODS_OF_CONTACT.as_choices(),
+                                                   max_length=200, null=True, blank=True)
     location = models.ForeignKey(Location, null=True, blank=True)
     picture = models.FileField('Photo', upload_to='pictures/contacts', blank=True)
-    capacities = models.ManyToManyField(Capacity)
+    capacities = models.ManyToManyField(Capacity, blank=True)
 
     def __str__(self):
         return self.pseudo

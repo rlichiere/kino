@@ -8,5 +8,8 @@ class _ParticipantPreferredMethodsOfContact(object):
     def as_choices(self):
         return [self.PHONE_MOBILE, self.PHONE_STATIC, self.EMAIL, self.FACEBOOK]
 
+    def get_default(self):
+        return self.EMAIL
+
 
 PARTICIPANT_PREFERRED_METHODS_OF_CONTACT = _ParticipantPreferredMethodsOfContact()

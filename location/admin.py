@@ -28,9 +28,9 @@ class LocationAdmin(admin.ModelAdmin):
             _resHtml = '<br />'.join(
                 [
                     '<a href="/admin/location/roadbookaddress/%s/change/" title="%s steps">%s</a>'
-                        % (_r.id,
-                           RoadbookStep.objects.filter(roadbook=_r).count(),
-                           _r.from_description)
+                    % (_r.id,
+                        RoadbookStep.objects.filter(roadbook=_r).count(),
+                        _r.from_description)
                     for _r in _roadbooks
                 ])
         return format_html(_resHtml)
@@ -56,9 +56,19 @@ class RoadbookAddressAdmin(admin.ModelAdmin):
         return format_html('<ul>%s</ul>' % _urlsHtml)
 
 
+class RoadbookStepAdmin(admin.ModelAdmin):
+    list_display = ('roadbook_to', 'coming_from', 'rank', 'at_description', 'direction_to_follow', )
+
+    def roadbook_to(self, instance):
+        return instance.roadbook.location.label
+
+    def coming_from(self, instance):
+        return instance.roadbook.from_description
+
+
 admin.site.register(Country)
 admin.site.register(PostalAddress, PostalAddressAdmin)
 admin.site.register(GPSAddress, GPSAddressAdmin)
 admin.site.register(Location, LocationAdmin)
 admin.site.register(RoadbookAddress, RoadbookAddressAdmin)
-admin.site.register(RoadbookStep)
+admin.site.register(RoadbookStep, RoadbookStepAdmin)
