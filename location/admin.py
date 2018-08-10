@@ -27,7 +27,7 @@ class LocationAdmin(admin.ModelAdmin):
         else:
             _resHtml = '<br />'.join(
                 [
-                    '<a href="/admin/location/roadbookaddress/%s/change/" title="%s steps">%s</a>'
+                    '<a href="/admin/location/roadbookaddress/%s/change/" title="%s steps" target="_blank">%s</a>'
                     % (_r.id,
                         RoadbookStep.objects.filter(roadbook=_r).count(),
                         _r.from_description)
@@ -49,7 +49,7 @@ class RoadbookAddressAdmin(admin.ModelAdmin):
         _steps = RoadbookStep.objects.filter(roadbook=instance).order_by('rank')
         _urlsHtml = ''.join(
             [
-                '<li><a href="/admin/location/roadbookstep/%s/change/">%02d. %s : %s</a></li>'
+                '<li><a href="/admin/location/roadbookstep/%s/change/" target="_blank">%02d. %s : %s</a></li>'
                     % (_s.id, _s.rank, _s.at_description, _s.direction_to_follow)
                 for _s in _steps
             ])

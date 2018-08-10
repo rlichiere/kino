@@ -29,12 +29,56 @@ Roughly up to date TODOs, ideas, etc.
         * if the invitation/purposal is accepted, the participation is cancelled
 
 ### Nice to have
+
+##### Data exporter
 * implement a data exporter (database -> .yaml)
   * this will be usefull to backup data and prepair datasets for tests 
+
+##### RegExps
 * implement regexps on model fields
 
-
-
+##### fixtures
+Define a generic way to distribute data models in categorized fixtures:
+* each model should/can expose data according to fixture categories:
+  * `minimum`: expose the minimum of data required for each model of module 
+  * `realistic`: expose realistic data
+  * `exhaustive`: expose data for all cases
+  * `fat`: expose a bunch of data
+* examples:
+  * ```
+    # /location/fixtures/country_minimum.yaml
+    - model: location.country
+      pk: 1
+        fields:
+            label: France
+    ```
+  * ```
+    # /location/fixtures/country_realistic.yaml
+    - model: location.country
+      pk: 1
+        fields:
+            label: France
+    - model: location.country
+      pk: 2
+        fields:
+            label: Switzerland
+    ```
+  * ```
+    # /location/fixtures/country_exhaustive.yaml
+    - model: location.country
+      pk: 1
+        fields:
+            label: A
+    - model: location.country
+      pk: 2
+        fields:
+            label: 1
+    - model: location.country
+      pk: 3
+        fields:
+            label: MoreExoticAndLongCountryNameInTheWorld
+    ```
+    
 ## Refactor
 
 * refactor ItemPicture as a PictureGallery

@@ -31,6 +31,11 @@ class Task(models.Model):
         return self.label
 
 
+class TaskDependencies(models.Model):
+    concerned_task = models.ForeignKey(Task, related_name='depends')
+    depends_on = models.ForeignKey(Task)
+
+
 class Participation(models.Model):
     task = models.ForeignKey(Task)
     capacity = models.ForeignKey(Capacity)
