@@ -16,7 +16,7 @@ class Capacity(models.Model):
 class Participant(models.Model):
     user = models.OneToOneField(User, null=True, blank=True)        # external contacts are not linked to a User account
     referer = models.ForeignKey(User, related_name='referer')          # the referer is the 'creator' of the participant
-    pseudo = models.CharField(max_length=200, unique=True)
+    pseudo = models.CharField(max_length=200, unique=True, null=False)
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200, blank=True)
     email = models.EmailField(max_length=200, blank=True)
@@ -31,3 +31,7 @@ class Participant(models.Model):
 
     def __str__(self):
         return self.pseudo
+
+    @property
+    def name(self):
+        return self.pseudo if self.pseudo else '%s %s' % (self.first_name, self.last_name)

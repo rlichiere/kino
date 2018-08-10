@@ -9,29 +9,8 @@ Roughly up to date TODOs, ideas, etc.
 ### Required
 * catalog : create models views for users:
   * create/edit models (Items, Locations, Addresses, etc)
-* create a `location` module to manage geographic places
-  * `Location`
-  * `PostalAddress`
-  * `GPSAddress`
-  * `RoadbookAddress`
-    * `RoadbookStep`
-* create a `people` module to manage persons mechanisms
-  * Participant
-    * represents a participant
-    * optional OneToOne with User (to be able to log in the site, or not)
-    * exposes a list of Capacities
-    * a Participant can be assigned to several tasks in several projects
-  * Capacity
-    * represents a capacity exposed by participants, and/or required for projects tasks
-* create a `project` module to allow people to manage their projects:
-  * project's Phases
-    * define project phases (ex: Writing, Preprod, Prod, PostProd, etc)
-  * project's Tasks
-    * create project's tasks (ex: find a scenery, build or buy an accessory)
-    * define tasks required capacities
-    * distribute tasks among phases
-  * project's People
-    * search/book/assign people to tasks according to capacities
+* improve `project` models admin pages
+* improve `Project` model to allow people to manage their projects:
   * project's Items
     * create project's required items
     * search/book/use/release catalog's items
@@ -52,6 +31,7 @@ Roughly up to date TODOs, ideas, etc.
 ### Nice to have
 * implement a data exporter (database -> .yaml)
   * this will be usefull to backup data and prepair datasets for tests 
+* implement regexps on model fields
 
 
 
