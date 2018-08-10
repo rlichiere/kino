@@ -7,9 +7,12 @@ Roughly up to date TODOs, ideas, etc.
 ## Features
 
 ### Required
-* catalog : create models views for users:
+
+##### Catalog
+* create models views for users:
   * create/edit models (Items, Locations, Addresses, etc)
-* improve `project` models admin pages
+
+##### Project
 * improve `Project` model to allow people to manage their projects:
   * project's Items
     * create project's required items
@@ -89,3 +92,6 @@ Define a generic way to distribute data models in categorized fixtures:
   * logger
   * config accelerators
   * ... ?
+* improve all models admin pages
+  * generalize links and lists constructions in the highlevel class
+
