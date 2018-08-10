@@ -1,0 +1,24 @@
+- model: project.task
+  pk: 1
+  fields:
+    label: Trouver une bonne chute
+    phase: 1
+    referer: 1
+    required_capacities:
+      - 1
+- model: project.task
+  pk: 2
+  fields:
+    label: Améliorer l'intrigue
+    phase: 1
+    referer: 1
+    required_capacities:
+      - 1
+- model: project.task
+  pk: 3
+  fields:
+    label: Caster de bons acteurs
+    phase: 2
+    referer: 1
+    required_capacities:
+      - 2

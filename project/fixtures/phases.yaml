@@ -1,0 +1,48 @@
+- model: project.phase
+  pk: 1
+  fields:
+    label: Writing
+    project: 1
+    rank: 1
+- model: project.phase
+  pk: 2
+  fields:
+    label: Preparation
+    project: 1
+    rank: 2
+- model: project.phase
+  pk: 3
+  fields:
+    label: Pre-Production
+    project: 1
+    rank: 3
+- model: project.phase
+  pk: 4
+  fields:
+    label: Production
+    project: 1
+    rank: 4
+- model: project.phase
+  pk: 5
+  fields:
+    label: Post-Production
+    project: 1
+    rank: 5
+- model: project.phase
+  pk: 6
+  fields:
+    label: Début
+    project: 2
+    rank: 1
+- model: project.phase
+  pk: 7
+  fields:
+    label: Milieu
+    project: 2
+    rank: 2
+- model: project.phase
+  pk: 8
+  fields:
+    label: Fin
+    project: 2
+    rank: 3

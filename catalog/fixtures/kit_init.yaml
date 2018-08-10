@@ -56,3 +56,30 @@
   fields:
     item: 1
     label: Face
+- model: project.project
+  pk: 1
+  fields:
+    label: Lonesome movie
+    referer: 1
+- model: project.phase
+  pk: 1
+  fields:
+    label: Writing
+    project: 1
+    rank: 1
+- model: project.task
+  pk: 1
+  fields:
+    label: Find a scenery
+    phase: 1
+    referer: 1
+    required_capacities:
+      - 1
+- model: project.participation
+  pk: 1
+  fields:
+    task: 1
+    capacity: 1
+    participant: 1
+    participant_validation: false
+    referer_validation: false

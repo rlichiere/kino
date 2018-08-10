@@ -1,0 +1,32 @@
+- model: project.participation
+  pk: 1
+  fields:
+    task: 1
+    capacity: 1
+    participant: 1
+    participant_validation: false
+    referer_validation: false
+- model: project.participation
+  pk: 2
+  fields:
+    task: 1
+    capacity: 2
+    participant: 1
+    participant_validation: true
+    referer_validation: false
+- model: project.participation
+  pk: 3
+  fields:
+    task: 1
+    capacity: 3
+    participant: 1
+    participant_validation: false
+    referer_validation: true
+- model: project.participation
+  pk: 4
+  fields:
+    task: 2
+    capacity: 2
+    participant: 1
+    participant_validation: true
+    referer_validation: true

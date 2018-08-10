@@ -1,0 +1,15 @@
+- model: project.project
+  pk: 1
+  fields:
+    label: Admin first movie
+    referer: 1
+- model: project.project
+  pk: 2
+  fields:
+    label: Admin second movie
+    referer: 1
+- model: project.project
+  pk: 3
+  fields:
+    label: A guy's movie
+    referer: 2

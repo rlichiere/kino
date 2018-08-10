@@ -1,15 +1,7 @@
-- model: auth.user
-  pk: 2
-  fields:
-    username: user1
-    email: user1@domain.tld
-    password: pbkdf2_sha256$24000$R4bmZcMDiBeP$4NWWUSuO9wjQingty70fgGeLjJwKGfoZadbU/Vs26Iw=
-- model: auth.user
-  pk: 3
-  fields:
-    username: user2
-    email: user2@domain.tld
-    password: pbkdf2_sha256$24000$R4bmZcMDiBeP$4NWWUSuO9wjQingty70fgGeLjJwKGfoZadbU/Vs26Iw=
+
+### LOCATIONS
+
+# Countries
 - model: location.country
   pk: 1
   fields:
@@ -18,6 +10,9 @@
   pk: 2
   fields:
     label: Italy
+
+
+# PostalAddress
 - model: location.postaladdress
   pk: 1
   fields:
@@ -34,6 +29,8 @@
     city: Avignon
     country: 1
     is_public: true
+
+# GPSAddress
 - model: location.gpsaddress
   pk: 1
   fields:
@@ -44,6 +41,8 @@
   fields:
     longitude: 2.1
     latitude: 2.2
+
+# Locations
 - model: location.location
   pk: 1
   fields:
@@ -56,11 +55,15 @@
     label: "Snack l'Amigo"
     postal_address: 2
     gps_address: 2
+
+# RoadbookAddress
 - model: location.roadbookaddress
   pk: 1
   fields:
     location: 1
     from_description: "En venant de Marseille"
+
+# RoadbookSteps
 - model: location.roadbookstep
   pk: 1
   fields:
@@ -82,6 +85,47 @@
     at_description: "Au rond-point du Quick"
     direction_to_follow: "Prendre à gauche (3ème sortie) puis contourner CapSud et son parking"
     roadbook: 1
+
+
+### PEOPLE
+
+# Users
+- model: auth.user
+  pk: 2
+  fields:
+    username: user1
+    email: user1@domain.tld
+    password: pbkdf2_sha256$24000$R4bmZcMDiBeP$4NWWUSuO9wjQingty70fgGeLjJwKGfoZadbU/Vs26Iw=
+- model: auth.user
+  pk: 3
+  fields:
+    username: user2
+    email: user2@domain.tld
+    password: pbkdf2_sha256$24000$R4bmZcMDiBeP$4NWWUSuO9wjQingty70fgGeLjJwKGfoZadbU/Vs26Iw=
+
+# Capacities
+- model: people.capacity
+  pk: 1
+  fields:
+    name: scriptwriter
+    label: Scénariste
+- model: people.capacity
+  pk: 2
+  fields:
+    name: storybreaker
+    label: Casseur d'histoire
+- model: people.capacity
+  pk: 3
+  fields:
+    name: revisor
+    label: Relecteur
+- model: people.capacity
+  pk: 4
+  fields:
+    name: caster
+    label: Caster
+
+# Participants
 - model: people.participant
   pk: 1
   fields:
@@ -99,10 +143,17 @@
   fields:
     referer: 3
     pseudo: Contact3
+
+
+### CATALOG
+
+# Item categories
 - model: catalog.itemcategory
   pk: 1
   fields:
     label: Costume
+
+# Items
 - model: catalog.item
   pk: 1
   fields:
@@ -119,6 +170,8 @@
     location: 1
     categories:
       - 2
+
+# ItemPictures
 - model: catalog.itempicture
   pk: 1
   fields:
@@ -129,3 +182,51 @@
   fields:
     item: 1
     label: Profil
+
+
+### PROJECT
+
+# Projects
+- model: project.project
+  pk: 1
+  fields:
+    label: Admin first movie
+    referer: 1
+- model: project.project
+  pk: 2
+  fields:
+    label: Admin second movie
+    referer: 1
+- model: project.project
+  pk: 3
+  fields:
+    label: A guy's movie
+    referer: 2
+
+# Phases
+- model: project.phase
+  pk: 1
+  fields:
+    label: Writing
+    project: 1
+    rank: 1
+
+# Tasks
+- model: project.task
+  pk: 1
+  fields:
+    label: Trouver une bonne chute
+    phase: 1
+    referer: 1
+    required_capacities:
+      - 1
+
+# Participations
+- model: project.participation
+  pk: 1
+  fields:
+    task: 1
+    capacity: 1
+    participant: 1
+    participant_validation: false
+    referer_validation: false

@@ -1,0 +1,27 @@
+# producteur/scenariste/realisateur/assistant_realisateur/scripte/regisseur/
+# image_operateur_chef/image_operateur_assistant/image_operateur_steadycam/photographe_plateau
+# son_operateur_chef/son_perchman/
+# decor_chef/decor_accessoiriste
+# hmc_maquilleur/hmc_costumier/hmc_habilleur/hmc_coiffeur
+# post_monteur/post_monteur_son/post_mixeur/post_etalonneur/post_direction
+# cascadeur
+- model: people.capacity
+  pk: 1
+  fields:
+    name: scriptwriter
+    label: Scénariste
+- model: people.capacity
+  pk: 2
+  fields:
+    name: storybreaker
+    label: Casseur d'histoire
+- model: people.capacity
+  pk: 3
+  fields:
+    name: revisor
+    label: Relecteur
+- model: people.capacity
+  pk: 4
+  fields:
+    name: caster
+    label: Caster
