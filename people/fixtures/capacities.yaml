@@ -8,20 +8,16 @@
 - model: people.capacity
   pk: 1
   fields:
-    name: scriptwriter
     label: Scénariste
 - model: people.capacity
   pk: 2
   fields:
-    name: storybreaker
     label: Casseur d'histoire
 - model: people.capacity
   pk: 3
   fields:
-    name: revisor
     label: Relecteur
 - model: people.capacity
   pk: 4
   fields:
-    name: caster
     label: Caster
