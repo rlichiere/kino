@@ -38,18 +38,22 @@ class ModelRepresentation(object):
 
 
 class GenericModelInterface(object):
+    """
+        Gives integrated tools to child Model classes
+    """
 
     def __init__(self):
         self._representation = None
-    """
-        Generic class must be implemented by all Models classes to take profit of integrated tools:
-    """
 
-    # RLI : dirty anticipation of cousin Model.id property
-    id = int()
+    """ PUBLIC """
 
     @property
     def representation(self):
+        """
+            returns the representation integrated to the Model
+
+        :return: <ModelRepresentation>
+        """
         return self._get_or_init_representation()
 
     """ PRIVATE """
