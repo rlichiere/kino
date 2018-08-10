@@ -1,0 +1,15 @@
+- model: project.taskdependency
+  pk: 1
+  fields:
+    concerned_task: 2
+    depends_on: 1
+- model: project.taskdependency
+  pk: 2
+  fields:
+    concerned_task: 4
+    depends_on: 3
+- model: project.taskdependency
+  pk: 3
+  fields:
+    concerned_task: 5
+    depends_on: 3

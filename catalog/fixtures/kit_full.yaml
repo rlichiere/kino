@@ -206,16 +206,71 @@
     label: Writing
     project: 1
     rank: 1
+- model: project.phase
+  pk: 2
+  fields:
+    label: Préparation
+    project: 1
+    rank: 2
 
 # Tasks
 - model: project.task
   pk: 1
+  fields:
+    label: Trouver un bon départ
+    phase: 1
+    referer: 1
+    required_capacities:
+      - 1
+- model: project.task
+  pk: 2
   fields:
     label: Trouver une bonne chute
     phase: 1
     referer: 1
     required_capacities:
       - 1
+- model: project.task
+  pk: 3
+  fields:
+    label: Design des personnages
+    phase: 2
+    referer: 1
+    required_capacities:
+      - 2
+- model: project.task
+  pk: 4
+  fields:
+    label: Casting des acteurs
+    phase: 2
+    referer: 1
+    required_capacities:
+      - 2
+- model: project.task
+  pk: 5
+  fields:
+    label: Répétitions préliminaires
+    phase: 2
+    referer: 1
+    required_capacities:
+      - 2
+
+# TaskDependencies
+- model: project.taskdependency
+  pk: 1
+  fields:
+    concerned_task: 2
+    depends_on: 1
+- model: project.taskdependency
+  pk: 2
+  fields:
+    concerned_task: 4
+    depends_on: 3
+- model: project.taskdependency
+  pk: 3
+  fields:
+    concerned_task: 5
+    depends_on: 3
 
 # Participations
 - model: project.participation

@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Project, Phase, Task, TaskDependencies, Participation
+from .models import Project, Phase, Task, TaskDependency, Participation
 
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -45,7 +45,7 @@ class TaskAdmin(admin.ModelAdmin):
 
 
     def depends_on_(self, instance):
-        _taskDeps = TaskDependencies.objects.filter(concerned_task=instance)
+        _taskDeps = TaskDependency.objects.filter(concerned_task=instance)
         if _taskDeps.count() == 0:
             return '-'
         _urlsHtml = ''.join(
@@ -56,7 +56,7 @@ class TaskAdmin(admin.ModelAdmin):
         return format_html('<ul>%s</ul>' % _urlsHtml)
 
 
-class TaskDependenciesAdmin(admin.ModelAdmin):
+class TaskDependencyAdmin(admin.ModelAdmin):
     list_display = ('project', 'phase', 'concerned_task', 'depends_on', )
 
     def project(self, instance):
@@ -87,5 +87,5 @@ class ParticipationAdmin(admin.ModelAdmin):
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Phase, PhaseAdmin)
 admin.site.register(Task, TaskAdmin)
-admin.site.register(TaskDependencies, TaskDependenciesAdmin)
+admin.site.register(TaskDependency, TaskDependencyAdmin)
 admin.site.register(Participation, ParticipationAdmin)

@@ -31,7 +31,7 @@ class Task(models.Model):
         return self.label
 
 
-class TaskDependencies(models.Model):
+class TaskDependency(models.Model):
     concerned_task = models.ForeignKey(Task, related_name='depends')
     depends_on = models.ForeignKey(Task)
 
