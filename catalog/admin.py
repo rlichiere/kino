@@ -12,7 +12,7 @@ class ItemAdmin(admin.ModelAdmin):
         return ','.join([_.label for _ in instance.categories.all()])
 
     def owner_(self, instance):
-        return format_html('<a href="/admin/catalog/contact/%s/change/" target="_blank">%s</a>' % (instance.owner.id, instance.owner.pseudo))
+        return format_html('<a href="/admin/people/participant/%s/change/" target="_blank">%s</a>' % (instance.owner.id, instance.owner.pseudo))
 
 
 class ItemPictureAdmin(admin.ModelAdmin):

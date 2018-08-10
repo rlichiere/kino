@@ -1,4 +1,4 @@
-- model: people.contact
+- model: people.participant
   pk: 1
   fields:
     user: 1

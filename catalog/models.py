@@ -3,7 +3,7 @@ from django.db import models
 
 
 from location.models import Location
-from people.models import Contact
+from people.models import Participant
 
 
 class ItemCategory(models.Model):
@@ -15,7 +15,7 @@ class ItemCategory(models.Model):
 
 class Item(models.Model):
     label = models.CharField(max_length=200)
-    owner = models.ForeignKey(Contact)
+    owner = models.ForeignKey(Participant)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     categories = models.ManyToManyField(ItemCategory)
 

@@ -27,7 +27,7 @@ class LocationAdmin(admin.ModelAdmin):
         else:
             _resHtml = '<br />'.join(
                 [
-                    '<a href="/admin/catalog/roadbookaddress/%s/change/" title="%s steps">%s</a>'
+                    '<a href="/admin/location/roadbookaddress/%s/change/" title="%s steps">%s</a>'
                         % (_r.id,
                            RoadbookStep.objects.filter(roadbook=_r).count(),
                            _r.from_description)
@@ -36,7 +36,7 @@ class LocationAdmin(admin.ModelAdmin):
         return format_html(_resHtml)
 
     def postal_address_(self, instance):
-        _url = '/admin/catalog/postaladdress/%s/change/' % instance.postal_address.id
+        _url = '/admin/location/postaladdress/%s/change/' % instance.postal_address.id
         _alt = instance.postal_address.as_str(expanded=True)
         _urlsHtml = '<a href="%s" title="%s">%s</a>' % (_url, _alt, instance.postal_address)
         return format_html(_urlsHtml)
@@ -49,7 +49,7 @@ class RoadbookAddressAdmin(admin.ModelAdmin):
         _steps = RoadbookStep.objects.filter(roadbook=instance).order_by('rank')
         _urlsHtml = ''.join(
             [
-                '<li><a href="/admin/catalog/roadbookstep/%s/change/">%02d. %s : %s</a></li>'
+                '<li><a href="/admin/location/roadbookstep/%s/change/">%02d. %s : %s</a></li>'
                     % (_s.id, _s.rank, _s.at_description, _s.direction_to_follow)
                 for _s in _steps
             ])

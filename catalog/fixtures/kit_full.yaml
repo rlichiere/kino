@@ -82,19 +82,19 @@
     at_description: "Au rond-point du Quick"
     direction_to_follow: "Prendre à gauche (3ème sortie) puis contourner CapSud et son parking"
     roadbook: 1
-- model: people.contact
+- model: people.participant
   pk: 1
   fields:
     user: 2
     referer: 1
     pseudo: Contact1
-- model: people.contact
+- model: people.participant
   pk: 2
   fields:
     user: 3
     referer: 1
     pseudo: Contact2
-- model: people.contact
+- model: people.participant
   pk: 3
   fields:
     referer: 3
