@@ -1,0 +1,16 @@
+[
+  {
+    "model": "catalog.country",
+    "pk": 1,
+    "fields": {
+      "label": "France"
+    }
+  },
+  {
+    "model": "catalog.country",
+    "pk": 2,
+    "fields": {
+      "label": "Italy"
+    }
+  }
+]

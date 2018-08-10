@@ -1,0 +1,12 @@
+- model: location.roadbookaddress
+  pk: 1
+  fields:
+    location: 1
+    from_description: "En venant de Marseille"
+- model: location.roadbookstep
+  pk: 1
+  fields:
+    rank: 0
+    at_description: "A la sortie n°23 Avignon-Sud"
+    direction_to_follow: "Sortir et suivre Avignon"
+    roadbook: 1

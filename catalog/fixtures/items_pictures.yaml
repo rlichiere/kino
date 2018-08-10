@@ -1,0 +1,10 @@
+- model: catalog.itempicture
+  pk: 1
+  fields:
+    item: 1
+    label: Face
+- model: catalog.itempicture
+  pk: 2
+  fields:
+    item: 1
+    label: Profil

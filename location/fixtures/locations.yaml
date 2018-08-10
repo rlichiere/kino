@@ -1,0 +1,12 @@
+- model: location.location
+  pk: 1
+  fields:
+    label: "Fontaine centre-ville"
+    postal_address: 1
+    gps_address: 1
+- model: location.location
+  pk: 2
+  fields:
+    label: "Snack l'Amigo"
+    postal_address: 2
+    gps_address: 2

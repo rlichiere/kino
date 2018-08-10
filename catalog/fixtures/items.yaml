@@ -1,0 +1,16 @@
+- model: catalog.item
+  pk: 1
+  fields:
+    label: Costume batman
+    owner: 1
+    location: 1
+    categories:
+      - 1
+- model: catalog.item
+  pk: 2
+  fields:
+    label: Snack l'amigo
+    owner: 1
+    location: 1
+    categories:
+      - 2

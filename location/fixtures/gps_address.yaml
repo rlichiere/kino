@@ -1,0 +1,10 @@
+- model: location.gpsaddress
+  pk: 1
+  fields:
+    longitude: 1.1
+    latitude: 1.2
+- model: location.gpsaddress
+  pk: 2
+  fields:
+    longitude: 2.1
+    latitude: 2.2

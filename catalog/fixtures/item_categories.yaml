@@ -1,0 +1,8 @@
+- model: catalog.itemcategory
+  pk: 1
+  fields:
+    label: Costume
+- model: catalog.itemcategory
+  pk: 2
+  fields:
+    label: Décor

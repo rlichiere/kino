@@ -1,0 +1,58 @@
+- model: catalog.country
+  pk: 1
+  fields:
+    label: France
+- model: catalog.postaladdress
+  pk: 1
+  fields:
+    number_in_street: 52
+    street: Chemin des Cris Verts
+    postal_code: 84000
+    city: Avignon
+    country: 1
+- model: catalog.gpsaddress
+  pk: 1
+  fields:
+    longitude: 1.1
+    latitude: 1.2
+- model: catalog.location
+  pk: 1
+  fields:
+    label: "Chez reùm"
+    postal_address: 1
+    gps_address: 1
+- model: catalog.roadbookaddress
+  pk: 1
+  fields:
+    location: 1
+    from_description: "En venant de Marseille"
+- model: catalog.roadbookstep
+  pk: 1
+  fields:
+    rank: 0
+    at_description: "A la sortie n°23 Avignon-Sud"
+    direction_to_follow: "Sortir et suivre Avignon"
+    roadbook: 1
+- model: catalog.contact
+  pk: 1
+  fields:
+    user: 1
+    referer: 1
+    pseudo: Admin
+- model: catalog.itemcategory
+  pk: 1
+  fields:
+    label: Costume
+- model: catalog.item
+  pk: 1
+  fields:
+    label: Costume batman
+    owner: 1
+    location: 1
+    categories:
+      - 1
+- model: catalog.itempicture
+  pk: 1
+  fields:
+    item: 1
+    label: Face

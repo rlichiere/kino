@@ -1,0 +1,16 @@
+- model: location.postaladdress
+  pk: 1
+  fields:
+    number_in_street: 17
+    street: Rue de la République
+    postal_code: 84000
+    city: Avignon
+    country: 1
+- model: location.postaladdress
+  pk: 2
+  fields:
+    street: Avenue Pierre Semard
+    postal_code: 84000
+    city: Avignon
+    country: 1
+    is_public: true

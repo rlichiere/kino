@@ -1,0 +1,6 @@
+- model: people.contact
+  pk: 1
+  fields:
+    user: 1
+    referer: 1
+    pseudo: Admin

@@ -1,0 +1,12 @@
+- model: auth.user
+  pk: 2
+  fields:
+    username: user1
+    email: user1@domain.tld
+    password: pbkdf2_sha256$24000$R4bmZcMDiBeP$4NWWUSuO9wjQingty70fgGeLjJwKGfoZadbU/Vs26Iw=
+- model: auth.user
+  pk: 3
+  fields:
+    username: user2
+    email: user2@domain.tld
+    password: pbkdf2_sha256$24000$R4bmZcMDiBeP$4NWWUSuO9wjQingty70fgGeLjJwKGfoZadbU/Vs26Iw=
