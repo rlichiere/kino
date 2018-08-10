@@ -1,6 +1,5 @@
 
 from django.contrib import admin
-from django.utils.html import format_html
 
 from .models import ItemCategory, Item, ItemPicture
 
@@ -9,17 +8,19 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = ('label', 'list_categories', 'owner_', )
 
     def list_categories(self, instance):
-        return ','.join([_.label for _ in instance.categories.all()])
+        _instances = instance.categories.all()
+        return instance.render_for_backoffice().as_list(_instances)
 
     def owner_(self, instance):
-        return format_html('<a href="/admin/people/participant/%s/change/" target="_blank">%s</a>' % (instance.owner.id, instance.owner.pseudo))
+        return instance.owner.render_for_backoffice().as_link()
 
 
 class ItemPictureAdmin(admin.ModelAdmin):
     list_display = ('label', 'item', 'list_categories', )
 
     def list_categories(self, instance):
-        return ','.join([_.label for _ in instance.item.categories.all()])
+        _instances = instance.item.categories.all()
+        return instance.render_for_backoffice().as_list(_instances)
 
 
 admin.site.register(ItemCategory)

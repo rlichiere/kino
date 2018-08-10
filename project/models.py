@@ -2,9 +2,10 @@
 from django.db import models
 
 from people.models import Capacity, Participant
+from core.generic.model import GenericModelInterface
 
 
-class Project(models.Model):
+class Project(models.Model, GenericModelInterface):
     label = models.CharField(max_length=200)
     referer = models.ForeignKey(Participant)
 
@@ -12,7 +13,7 @@ class Project(models.Model):
         return self.label
 
 
-class Phase(models.Model):
+class Phase(models.Model, GenericModelInterface):
     label = models.CharField(max_length=200)
     project = models.ForeignKey(Project)
     rank = models.PositiveIntegerField()
@@ -21,7 +22,7 @@ class Phase(models.Model):
         return self.label
 
 
-class Task(models.Model):
+class Task(models.Model, GenericModelInterface):
     label = models.CharField(max_length=200)
     phase = models.ForeignKey(Phase)
     referer = models.ForeignKey(Participant)
@@ -34,6 +35,9 @@ class Task(models.Model):
 class TaskDependency(models.Model):
     concerned_task = models.ForeignKey(Task, related_name='depends')
     depends_on = models.ForeignKey(Task)
+
+    def __str__(self):
+        return self.depends_on.__str__()
 
 
 class Participation(models.Model):

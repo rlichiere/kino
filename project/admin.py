@@ -1,6 +1,5 @@
 
 from django.contrib import admin
-from django.utils.html import format_html
 
 from .models import Project, Phase, Task, TaskDependency, Participation
 
@@ -9,68 +8,64 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('label', 'referer_', )
 
     def referer_(self, instance):
-        _referer = instance.referer
-        return format_html('<a href="/admin/people/participant/%s/change/" target="_blank">%s</a>' % (_referer.id, _referer.name))
+        return instance.referer.render_for_backoffice().as_link()
 
 
 class PhaseAdmin(admin.ModelAdmin):
     list_display = ('label', 'rank', 'project', 'project_referer', )
 
     def project_referer(self, instance):
-        _referer = instance.project.referer
-        return format_html('<a href="/admin/people/participant/%s/change/" target="_blank">%s</a>' % (_referer.id, _referer.name))
+        return instance.project.referer.render_for_backoffice().as_link()
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('label', 'project', 'phase', 'required_capacities_', 'referer_', 'depends_on_', )
+    list_display = ('label', 'project', 'phase_', 'required_capacities_', 'referer_', 'depends_on_', )
 
     def project(self, instance):
-        return instance.phase.project
+        return instance.phase.project.render_for_backoffice().as_link()
+
+    def phase_(self, instance):
+        return instance.phase.render_for_backoffice().as_link()
 
     def required_capacities_(self, instance):
         if not instance.required_capacities:
             # todo : this should not happen because task.capacities should never be empty
             return '-'
 
-        _urlsHtml = ''.join(
-            [
-                '<li><a href="/admin/people/capacity/%s/change/" target="_blank">%s</a></li>' % (_c.id, _c.label)
-                for _c in instance.required_capacities.all()
-            ])
-        return format_html('<ul>%s</ul>' % _urlsHtml)
+        return instance.render_for_backoffice().as_list(instance.required_capacities.all())
 
     def referer_(self, instance):
-        _referer = instance.referer
-        return format_html('<a href="/admin/people/participant/%s/change/" target="_blank">%s</a>' % (_referer.id, _referer.name))
-
+        return instance.referer.render_for_backoffice().as_link()
 
     def depends_on_(self, instance):
         _taskDeps = TaskDependency.objects.filter(concerned_task=instance)
-        if _taskDeps.count() == 0:
-            return '-'
-        _urlsHtml = ''.join(
-            [
-                '<li><a href="/admin/project/taskdependency/%s/change/" target="_blank">%s</a></li>' % (_td.id, _td.depends_on)
-                for _td in _taskDeps
-            ])
-        return format_html('<ul>%s</ul>' % _urlsHtml)
+        return instance.referer.render_for_backoffice().as_list(_taskDeps)
 
 
 class TaskDependencyAdmin(admin.ModelAdmin):
-    list_display = ('project', 'phase', 'concerned_task', 'depends_on', )
-
-    def project(self, instance):
-        return instance.concerned_task.phase.project
+    list_display = ('id', 'concerned_task', 'depends_on', 'phase', 'project', )
 
     def phase(self, instance):
-        return instance.concerned_task.phase
+        return instance.concerned_task.phase.render_for_backoffice().as_link()
+
+    def project(self, instance):
+        return instance.concerned_task.phase.project.render_for_backoffice().as_link()
 
 
 class ParticipationAdmin(admin.ModelAdmin):
-    list_display = ('project', 'task', 'participant', 'validation')
+    list_display = ('id', 'participant_', 'capacity_', 'task_', 'validation', 'project')
+
+    def task_(self, instance):
+        return instance.task.render_for_backoffice().as_link()
+
+    def participant_(self, instance):
+        return instance.participant.render_for_backoffice().as_link()
+
+    def capacity_(self, instance):
+        return instance.capacity.render_for_backoffice().as_link()
 
     def project(self, instance):
-        return instance.task.phase.project
+        return instance.task.phase.project.render_for_backoffice().as_link()
 
     def validation(self, instance):
         if instance.participant_validation and instance.referer_validation:

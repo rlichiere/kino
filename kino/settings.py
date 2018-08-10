@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'people.apps.PeopleConfig',
     'location.apps.LocationConfig',
     'config.apps.ConfigConfig',
+    'core.apps.CoreConfig',
     'guardian',
     'widget_tweaks',
     'mathfilters',
