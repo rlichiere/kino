@@ -11,6 +11,8 @@ from core.generic.model import GenericModelInterface
 class ItemCategory(models.Model, GenericModelInterface):
     label = models.CharField(max_length=200)
 
+    """ Abstract implementations """
+
     def __str__(self):
         return self.label
 
@@ -21,14 +23,18 @@ class Item(models.Model, GenericModelInterface):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     categories = models.ManyToManyField(ItemCategory)
 
+    """ Abstract implementations """
+
     def __str__(self):
         return self.label
 
 
 class ItemPicture(models.Model, GenericModelInterface):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     label = models.CharField(max_length=200)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     picture = models.FileField('Picture', upload_to='pictures/items_pictures', blank=True)
+
+    """ Abstract implementations """
 
     def __str__(self):
         return self.label

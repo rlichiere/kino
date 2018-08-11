@@ -5,7 +5,7 @@ from .models import ItemCategory, Item, ItemPicture
 
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('label', 'list_categories', 'owner_', )
+    list_display = ('label', 'location', 'list_categories', 'owner_', )
 
     def list_categories(self, instance):
         _instances = instance.categories.all()

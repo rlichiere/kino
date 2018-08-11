@@ -11,6 +11,8 @@ from core.generic.model import GenericModelInterface
 class Capacity(models.Model, GenericModelInterface):
     label = models.CharField(max_length=200)
 
+    """ Abstract implementations """
+
     def __str__(self):
         return self.label
 
@@ -31,9 +33,13 @@ class Participant(models.Model, GenericModelInterface):
     picture = models.FileField('Photo', upload_to='pictures/contacts', blank=True)
     capacities = models.ManyToManyField(Capacity, blank=True)
 
-    def __str__(self):
-        return self.name
+    """ PUBLIC """
 
     @property
     def name(self):
         return self.pseudo if self.pseudo else '%s %s' % (self.first_name, self.last_name)
+
+    """ Abstract implementations """
+
+    def __str__(self):
+        return self.name

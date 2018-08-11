@@ -1,14 +1,18 @@
 
+from abc import abstractmethod
+
 from django.utils.html import format_html
 
 
 class ModelRepresentation(object):
+    """
+        Exposes (NOT formatting BUT) rendering methods to integrated Models
+    """
 
     def __init__(self, instance):
         self._instance = instance
 
-    def __str__(self):
-        return self._instance.__str__()
+    """ PUBLIC """
 
     def as_link(self):
         _link = self._buildAdminPageEditLink(self._instance)
@@ -28,7 +32,8 @@ class ModelRepresentation(object):
 
     """ PRIVATE """
 
-    def _buildAdminPageEditLink(self, instance):
+    @staticmethod
+    def _buildAdminPageEditLink(instance):
         _url = '/admin/{module}/{model}/{id}/change/'.format(
             module=instance.__module__.split('.')[0],
             model=instance.__class__.__name__.lower(),
@@ -45,20 +50,28 @@ class GenericModelInterface(object):
     def __init__(self):
         self._representation = None
 
+    @abstractmethod
+    def __str__(self):
+        """
+        Overrides __str__ to impact Django integrated behaviors
+        :return:<str> A better representation of the model
+        """
+        return str()
+
     """ PUBLIC """
 
     @property
     def representation(self):
         """
-            returns the representation integrated to the Model
+        Returns the representation integrated to the Model
 
         :return: <ModelRepresentation>
         """
-        return self._get_or_init_representation()
+        return self._get_or_instantiate_representation()
 
     """ PRIVATE """
 
-    def _get_or_init_representation(self):
+    def _get_or_instantiate_representation(self):
         if self._representation is None:
             self._representation = ModelRepresentation(self)
         return self._representation

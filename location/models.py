@@ -9,6 +9,8 @@ class Country(models.Model, GenericModelInterface):
     label = models.CharField(max_length=200)
     flag_file = models.FileField('Flag file', upload_to='flags', blank=True)
 
+    """ Abstract implementations """
+
     def __str__(self):
         return self.label
 
@@ -23,9 +25,6 @@ class PostalAddress(models.Model, GenericModelInterface):
     city = models.CharField(max_length=200)
     country = models.ForeignKey(Country)
     is_public = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.as_str()
 
     def as_str(self, expanded=False):
         _address = ''
@@ -49,6 +48,11 @@ class PostalAddress(models.Model, GenericModelInterface):
 
         _address += '%s, %s %s - %s' % (self.street, self.postal_code, self.city, self.country)
         return _address
+
+    """ Abstract implementations """
+
+    def __str__(self):
+        return self.as_str()
 
 
 class GPSAddress(models.Model, GenericModelInterface):
@@ -88,11 +92,13 @@ class GPSAddress(models.Model, GenericModelInterface):
         if _changed:
             self.save()
 
-    def __str__(self):
-        return self.as_label()
-
     def as_label(self):
         return self.coordinates
+
+    """ Abstract implementations """
+
+    def __str__(self):
+        return self.as_label()
 
 
 class Location(models.Model, GenericModelInterface):
@@ -102,6 +108,8 @@ class Location(models.Model, GenericModelInterface):
     picture = models.FileField('Picture', upload_to='pictures/locations', blank=True)
     is_public = models.BooleanField(default=False)
 
+    """ Abstract implementations """
+
     def __str__(self):
         return self.label
 
@@ -110,6 +118,8 @@ class RoadbookAddress(models.Model, GenericModelInterface):
     arriving_by = models.CharField(max_length=200)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='roadbook_address')
     is_public = models.BooleanField(default=False)
+
+    """ Abstract implementations """
 
     def __str__(self):
         return self.arriving_by
@@ -150,6 +160,8 @@ class RoadbookStep(models.Model, GenericModelInterface):
 
     distance = models.IntegerField(blank=True, null=True)
     duration = models.DurationField(blank=True, null=True)
+
+    """ Abstract implementations """
 
     def __str__(self):
         return self.at_description
