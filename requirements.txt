@@ -21,7 +21,7 @@ django-jquery==1.9.1
 django-parsley==0.6
 django-widget-tweaks==1.4.1
 docker-py==1.8.1
-ecdsa==0.13
+ecdsa>=0.13.3
 ipaddress==1.0.14
 kombu==3.0.35
 paramiko>=2.0.9
