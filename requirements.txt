@@ -1,4 +1,4 @@
-Django==1.9
+django>=1.11.19
 Jinja2>=2.10.1
 MarkupSafe==0.23
 MySQL-python==1.2.5
