@@ -24,7 +24,7 @@ docker-py==1.8.1
 ecdsa==0.13
 ipaddress==1.0.14
 kombu==3.0.35
-paramiko==1.16.0
+paramiko>=2.0.9
 pycrypto==2.6.1
 pygeoip==0.3.2
 pymssql==2.1.3
